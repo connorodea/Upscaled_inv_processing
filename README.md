@@ -27,6 +27,13 @@ Run the GitHub Actions workflow to generate `dist/windows/UpscaledSetup.exe`:
 - Workflow: `.github/workflows/windows-installer.yml`
 - Output artifact: `UpscaledSetup` (download and run on Windows)
 
+## macOS One-Click Installer (.pkg)
+
+Run the GitHub Actions workflow to generate the macOS `.pkg`:
+
+- Workflow: `.github/workflows/macos-installer.yml`
+- Output artifacts: `UpscaledInventory-macos-13.pkg` (Intel) and `UpscaledInventory-macos-14.pkg` (Apple Silicon)
+
 ## Usage
 
 ### Start the CLI

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+app_path="/Applications/Upscaled Inventory.app"
+bin_path="/usr/local/bin/upscaled"
+
+if [[ -d "${app_path}" ]]; then
+  ln -sf "${app_path}/Contents/MacOS/upscaled" "${bin_path}"
+fi
