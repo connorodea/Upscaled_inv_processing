@@ -15,3 +15,4 @@ test-sharp-output.png
 coverage/
 .env
 *.zip
+data/upscaled-sheets-sync.json
