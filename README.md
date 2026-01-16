@@ -20,6 +20,13 @@ npm install
 npm run build
 ```
 
+## Windows One-Click Installer (.exe)
+
+Run the GitHub Actions workflow to generate `dist/windows/UpscaledSetup.exe`:
+
+- Workflow: `.github/workflows/windows-installer.yml`
+- Output artifact: `UpscaledSetup` (download and run on Windows)
+
 ## Usage
 
 ### Start the CLI

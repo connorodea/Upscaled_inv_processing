@@ -16,3 +16,4 @@ coverage/
 .env
 *.zip
 data/upscaled-sheets-sync.json
+data/upscaled-sheets-sync-2.json
