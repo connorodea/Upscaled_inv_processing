@@ -37,15 +37,23 @@ mkdir -p "${app_bundle}/Contents/Resources/app"
 
 cp -R "${tmp_dir}/node-${node_version}-${node_platform}" "${app_bundle}/Contents/Resources/node"
 
-cp -R "${repo_root}/dist" "${app_bundle}/Contents/Resources/app"
-cp "${repo_root}/package.json" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/assets" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/data" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/MasterManifests" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/labels" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/sku_templates" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/ui" "${app_bundle}/Contents/Resources/app"
-cp -R "${repo_root}/docs" "${app_bundle}/Contents/Resources/app"
+copy_if_exists() {
+  local src="$1"
+  local dest="$2"
+  if [[ -e "${src}" ]]; then
+    cp -R "${src}" "${dest}"
+  fi
+}
+
+copy_if_exists "${repo_root}/dist" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/package.json" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/assets" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/data" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/MasterManifests" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/labels" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/sku_templates" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/ui" "${app_bundle}/Contents/Resources/app"
+copy_if_exists "${repo_root}/docs" "${app_bundle}/Contents/Resources/app"
 
 rm -f "${app_bundle}/Contents/Resources/app/data/upscaled-sheets-sync.json"
 rm -f "${app_bundle}/Contents/Resources/app/data/upscaled-sheets-sync-2.json"

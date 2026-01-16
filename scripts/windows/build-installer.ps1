@@ -48,6 +48,11 @@ foreach ($item in $copyItems) {
   }
 }
 
+$packageJson = Join-Path $repoRoot "package.json"
+if (Test-Path $packageJson) {
+  Copy-Item -Force -Path $packageJson -Destination $appRoot
+}
+
 if (Test-Path (Join-Path $appRoot "data\upscaled-sheets-sync.json")) {
   Remove-Item -Force (Join-Path $appRoot "data\upscaled-sheets-sync.json")
 }
