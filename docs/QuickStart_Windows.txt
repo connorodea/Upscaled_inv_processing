@@ -1,0 +1,32 @@
+Upscaled Inventory Processing - Quick Start (Windows)
+
+1) Install
+- Download Upscaled_inv_processing_windows.zip from the email.
+- Right-click the zip > Extract All.
+- Open the extracted folder.
+- Double-click install.bat.
+  - If Windows blocks it: More info > Run anyway.
+  - If it asks for admin: click Yes.
+
+2) Open the app
+- Double-click the desktop icon: Upscaled Inventory
+  OR
+- Open Command Prompt or PowerShell and type: upscaled
+
+3) Printer setup (Dymo 450)
+- In the menu, choose: Setup printer (auto-detect).
+- It will pick the Dymo 450 and use 2x1 labels.
+
+4) Normal use
+- Enter PID and UPC (or Manufacturer + Model).
+- Print SKU label when prompted.
+- The master manifest row is marked Processed with a timestamp.
+
+5) Google Sheets sync
+- Happens automatically after every batch export.
+- No login needed.
+
+Troubleshooting
+- If the app will not start, restart the computer and run install.bat again.
+- If printing fails, rerun Setup printer (auto-detect).
+

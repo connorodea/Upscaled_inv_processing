@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.upscaled.techliquidators-alerts</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/bin/env</string>
+      <string>node</string>
+      <string>dist/index.js</string>
+      <string>auctions</string>
+      <string>alerts</string>
+      <string>--notify</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/connorodea/Library/Mobile Documents/com~apple~CloudDocs/UPSCALED2026/Upscaled_inv_processing</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>300</integer>
+    <key>StandardOutPath</key>
+    <string>/Users/connorodea/Library/Logs/upscaled-techliquidators-alerts.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/connorodea/Library/Logs/upscaled-techliquidators-alerts.err.log</string>
+  </dict>
+</plist>
