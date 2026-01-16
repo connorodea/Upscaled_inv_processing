@@ -13,7 +13,5 @@ ziTO3tN8
 test-output*.png
 test-sharp-output.png
 coverage/
-data/
-MasterManifests/
 .env
 *.zip

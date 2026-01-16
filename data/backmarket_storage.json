@@ -1,0 +1,574 @@
+{
+  "cookies": [
+    {
+      "name": "visitor_id",
+      "value": "0f63a7ee-36ae-4788-ac31-fec30a48e208",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1775758186.637342,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "session_id",
+      "value": "7a6bc47c-036b-42d9-b496-14a0662bffdc",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1775758186.637405,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "cFa_daiS.8lgWvgOtpHAWVFk8ZmgvwHZ2nogpYZr208-1767982186-1.0.1.1-Lsk23C8cmt5H3TMfF8v7MxcSM.yo2B9NqBSW_TYwef6r6bsSJ3x2C4nW3r.BgIfs8IYqNC2ZNjyZHu_OT3uj.nzaS9_usyUHJ3IIXAxAhJWp4QHWLeuhX1VBNl0NKV2y",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1767983986.637416,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cfuvid",
+      "value": "qDE0Z3hmG0Yta.fl9kMIuxNfU1OQfRds3AdEov6D2_Q-1767982186613-0.0.1.1-604800000",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "AMP_MKTG_b172142592",
+      "value": "JTdCJTdE",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1799518186,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "BM_Advertising",
+      "value": "true",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1783616986,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "BM_Analytics",
+      "value": "true",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1783616986,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "BM_User_Experience",
+      "value": "true",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1783616986,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "csrftoken_p",
+      "value": "rCwTByRhgu87HdZTKPqVAupxuFwvtJjA",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1799431787.133745,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sessionid",
+      "value": "ie62498a5el6s3uokgppz22zgkhwffv5",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1775758187.133781,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "AwinChannelCookie",
+      "value": "direct",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1770574187.333665,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.630776945.1767982187",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1775758187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cf_clearance",
+      "value": "cs1P56SlXRQktpihiQ5I3ifbSJRPzH.4XOOKVsbIj_A-1767982187-1.2.1.1-QnnD9a43km3f2CJ7GLt9ZgPKmMBz8ssy.._KoMhL_NUNZkNU9668TNVumoH7LE_iOGehckxH.7vDLHW12.4FhKX.xBjJL7Q8.kOm7mW1nxXfhAvWP7IocWpOq_XEMbVG_4K44ReABjszQLz5RmeoVqziD95HdNU6NczN1qOaiBco._BPM1nvMhX2ZWVFWe4sz9Zn02V5mng0yEL2nGG7hwj3bTG8K0mRklBxjVU6858",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1799518187.349524,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://backmarket.com",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
+      "name": "__rtbh.uid",
+      "value": "%7B%22eventType%22%3A%22uid%22%2C%22id%22%3A%22unknown%22%2C%22expiryDate%22%3A%222027-01-09T18%3A09%3A47.424Z%22%7D",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1799518187,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__rtbh.lid",
+      "value": "%7B%22eventType%22%3A%22lid%22%2C%22id%22%3A%22dv4wqBSKblUlQgzBysd8%22%2C%22expiryDate%22%3A%222027-01-09T18%3A09%3A47.424Z%22%7D",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1799518187,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_rdt_uuid",
+      "value": "1767982187453.74203ebf-847d-4c06-a213-68acc55f768b",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1775758187,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "_ttp",
+      "value": "382075kGBTW0NowOhn9eRO8bc9S",
+      "domain": ".tiktok.com",
+      "path": "/",
+      "expires": 1801678187.501294,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.1041358302.1767982188",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_uetsid",
+      "value": "62210890ed8611f0a93887b386276fd1",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1768068587,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_uetvid",
+      "value": "6220ebd0ed8611f0b4caf339649c512f",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_tt_enable_cookie",
+      "value": "1",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ttp",
+      "value": "01KEHZ6H3Z333YHQVYZJS9QD4S_.tt.1",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "lantern",
+      "value": "96a6d0d4-fcc9-4698-be79-b130288c86db",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1770574187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".bat.bing.com",
+      "path": "/",
+      "expires": 1768586987.710803,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MUID",
+      "value": "041C44768AE5611213C052AA8B3C606E",
+      "domain": ".bing.com",
+      "path": "/",
+      "expires": 1801678187.71076,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_pin_unauth",
+      "value": "dWlkPU9UTTRNRGMxWXpFdE1XRTVPUzAwWmpkbExXSmhNRGt0T0RVMU9ERTVaRFl5T1dNeQ",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1799518187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.1.1767982187746.1803725567361172",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1775758187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "AMP_b172142592",
+      "value": "JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjJiNzdiZGRlNi0xZmMzLTRiOTAtYWFiOC00ZTU5NDk0NTk3ODklMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzY3OTgyMTg2OTY1JTJDJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJsYXN0RXZlbnRUaW1lJTIyJTNBMTc2Nzk4MjE4Nzc1OCUyQyUyMmxhc3RFdmVudElkJTIyJTNBNiUyQyUyMnBhZ2VDb3VudGVyJTIyJTNBMCU3RA==",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1799518187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "g",
+      "value": "SYauDxpeTtCYnkEtJO5x_1767982187819",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1799518187.838702,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "c",
+      "value": "SYauDxpeTtCYnkEtJO5x_oE0rk7kQf4t4u3U4FlHU_1767982187819",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1799518187.838736,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://backmarket.com",
+      "_crHasCrossSiteAncestor": true
+    },
+    {
+      "name": "ts",
+      "value": "1767982187",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1799518187.83875,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://backmarket.com",
+      "_crHasCrossSiteAncestor": true
+    },
+    {
+      "name": "visitor_id",
+      "value": "5567d43f-d892-442a-9816-f9902c574ea6",
+      "domain": "gobbledygook.backmarket.com",
+      "path": "/",
+      "expires": 1775758187.875496,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "session_id",
+      "value": "7975829d-614b-4a23-b277-083ac07d311d",
+      "domain": "gobbledygook.backmarket.com",
+      "path": "/",
+      "expires": 1775758187.875547,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "FPAU",
+      "value": "1.1.630776945.1767982187",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1775758187.220052,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "FPGSID",
+      "value": "1.1767982187.1767982187.G-W101YGMKND.pcHkBd9vpiXRUm4R4Qvrdg",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1767983987.939053,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "test_cookie",
+      "value": "CheckForPermission",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1767983087.956534,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ttcsid",
+      "value": "1767982187649::EW-k9uPOeAGZ1qv_iNF1.1.1767982187970.0",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ttcsid_C7PCTQU0MJON0LQMMO70",
+      "value": "1767982187649::4QcvqK6EltpcKb4D9hca.1.1767982187970.0",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678187,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "backmarket.com_lantern",
+      "value": "96a6d0d4-fcc9-4698-be79-b130288c86db",
+      "domain": ".roeye.com",
+      "path": "/",
+      "expires": 1783706988.113237,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "XANDR_PANID",
+      "value": "sK9gZpPkvvyIHM6EZGpNl_o_mKM9KP3SkewBHRqBwbgx4ovzfdtleQaOQ2CZqExJKTnFdn8FbHiO2yDsHDF1-KA1VuRBHjWj8bIXGDi9Up8.",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1775758188.207416,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://backmarket.com",
+      "_crHasCrossSiteAncestor": true
+    },
+    {
+      "name": "uuid2",
+      "value": "8752944921439261225",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1775758188.207465,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_scid",
+      "value": "6db46528-b748-46c3-86e7-fc91a35508bf",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1799518188.205293,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "anj",
+      "value": "dTM7k!M4/rD>6NRF']wIg2E>3Dg6KG!@wnfH1YbZRGH!W=37IH[WKs^75s<'.yJwkXa0K43w4gyiUTV_XOQ$+.Bms#_XOmp1rP)n?[*<Bq^29eP(hw9P-HC_#u#ZQ-:p2o",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1775758188.207456,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ServerAwinChannelCookie",
+      "value": "direct",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1770574188.350656,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gtmeec",
+      "value": "e30%3D",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1775758188.502092,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "_dd_s",
+      "value": "logs=1&id=a81d6749-4c25-47e9-a2a9-d0570c349332&created=1767982186967&expire=1767983089377",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1767983089,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "_ga_W101YGMKND",
+      "value": "GS2.1.s1767982187$o1$g0$t1767982189$j58$l0$h271763599",
+      "domain": ".backmarket.com",
+      "path": "/",
+      "expires": 1801678189,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cf_chl_rc_ni",
+      "value": "1",
+      "domain": "www.backmarket.com",
+      "path": "/",
+      "expires": 1767985793,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://backmarket.com",
+      "_crHasCrossSiteAncestor": false
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.backmarket.com",
+      "localStorage": [
+        {
+          "name": "ab.storage.attributes.81ecdd2d-d208-4f9e-9180-57c7d045c5c2",
+          "value": "{\"v\":{\"ab.storage.attributes.anonymous_user\":{\"custom\":{\"$google_ad_user_data\":true,\"$google_ad_personalization\":true}}}}"
+        },
+        {
+          "name": "__rtbh.lid",
+          "value": "{\"eventType\":\"lid\",\"id\":\"dv4wqBSKblUlQgzBysd8\",\"expiryDate\":\"2027-01-09T18:09:47.424Z\"}"
+        },
+        {
+          "name": "_uetvid_exp",
+          "value": "Wed, 03 Feb 2027 18:09:47 GMT"
+        },
+        {
+          "name": "topicsLastReferenceTime",
+          "value": "1767982187748"
+        },
+        {
+          "name": "bm.analytics.u.fs",
+          "value": "unknown"
+        },
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":4,\"timeouts\":0,\"creationTimeMs\":1767982187731},\"expires\":1775758187731}}"
+        },
+        {
+          "name": "AMP_remote_config_b172142592",
+          "value": "{\"remoteConfig\":{\"configs\":{\"diagnostics\":{},\"sessionReplay\":{},\"analyticsSDK\":{}}},\"lastFetch\":\"2026-01-09T18:09:47.881Z\"}"
+        },
+        {
+          "name": "gtmBrowserId",
+          "value": "1767982986680"
+        },
+        {
+          "name": "_uetsid",
+          "value": "62210890ed8611f0a93887b386276fd1"
+        },
+        {
+          "name": "lastExternalReferrerTime",
+          "value": "1767982187741"
+        },
+        {
+          "name": "_uetsid_exp",
+          "value": "Sat, 10 Jan 2026 18:09:47 GMT"
+        },
+        {
+          "name": "__rtbh.uid",
+          "value": "{\"eventType\":\"uid\",\"id\":\"unknown\",\"expiryDate\":\"2027-01-09T18:09:47.424Z\"}"
+        },
+        {
+          "name": "_uetvid",
+          "value": "6220ebd0ed8611f0b4caf339649c512f"
+        },
+        {
+          "name": "lastExternalReferrer",
+          "value": "empty"
+        },
+        {
+          "name": "AMP_unsent_b172142592",
+          "value": "[]"
+        },
+        {
+          "name": "bm.analytics.u.rn",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "origin": "https://challenges.cloudflare.com",
+      "localStorage": [
+        {
+          "name": "cf.turnstile.u",
+          "value": "FEVQtf9RnTp36BqmqCIpPMeDNoz86q.hkBpKtvuDFf4-1767982190-1.3.1.1-Wq1tNDv5_6wiqSNlDqzhggHP5wlqCQIvnyC9s.TKD9prvxF9tWv0T5fcfwJbbOaILIJVjaYou0nfWOdi3byEcA"
+        }
+      ]
+    }
+  ]
+}
