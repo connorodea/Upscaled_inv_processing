@@ -61,7 +61,7 @@ async function getAccessToken(): Promise<string> {
   const keyPath =
     process.env.UPSCALED_SERVICE_ACCOUNT_KEY ||
     process.env.GOOGLE_APPLICATION_CREDENTIALS ||
-    path.join(process.cwd(), 'data', 'upscaled-sheets-sync.json');
+    path.join(process.cwd(), 'data', 'upscaled-sheets-sync-2.json');
 
   const preferServiceAccount =
     Boolean(process.env.UPSCALED_SERVICE_ACCOUNT_KEY) ||
