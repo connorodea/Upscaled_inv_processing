@@ -35,12 +35,13 @@ else
 fi
 
 if [[ -z "${drive_root}" ]]; then
-  echo "Google Drive root not found. Skipping photo intake config."
-  exit 0
+  echo "Google Drive root not found. Using local folders instead."
+  intake_dir="${repo_dir}/Upscaled_Photo_Intake"
+  output_dir="${repo_dir}/Upscaled_Photos"
+else
+  intake_dir="${drive_root}/Upscaled_Photo_Intake"
+  output_dir="${drive_root}/Upscaled_Photos"
 fi
-
-intake_dir="${drive_root}/Upscaled_Photo_Intake"
-output_dir="${drive_root}/Upscaled_Photos"
 
 mkdir -p "${intake_dir}" "${output_dir}"
 

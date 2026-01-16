@@ -6,14 +6,16 @@ if ([string]::IsNullOrWhiteSpace($repoDir)) { $repoDir = $repoDefault }
 
 Write-Host "Example Google Drive path:" -ForegroundColor Cyan
 Write-Host "  C:\\Users\\<user>\\Google Drive\\Shared drives\\Upscaled" -ForegroundColor Cyan
-$driveRoot = Read-Host "Google Drive base folder"
+$driveRoot = Read-Host "Google Drive base folder (press Enter to use local folders)"
 if ([string]::IsNullOrWhiteSpace($driveRoot)) {
-  Write-Host "Drive root is required." -ForegroundColor Red
-  exit 1
+  $driveRoot = $null
+} elseif (-not (Test-Path $driveRoot)) {
+  Write-Host "Drive root not found: $driveRoot. Using local folders instead." -ForegroundColor Yellow
+  $driveRoot = $null
 }
 
-$intakeDir = Join-Path $driveRoot "Upscaled_Photo_Intake"
-$outputDir = Join-Path $driveRoot "Upscaled_Photos"
+$intakeDir = if ($driveRoot) { Join-Path $driveRoot "Upscaled_Photo_Intake" } else { Join-Path $repoDir "Upscaled_Photo_Intake" }
+$outputDir = if ($driveRoot) { Join-Path $driveRoot "Upscaled_Photos" } else { Join-Path $repoDir "Upscaled_Photos" }
 New-Item -ItemType Directory -Force -Path $intakeDir | Out-Null
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
