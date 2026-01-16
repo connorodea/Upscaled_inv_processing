@@ -356,7 +356,7 @@ export class EbayCompsManifestAnalyzer {
     const exts = new Set(['.csv', '.tsv', '.xlsx', '.xls']);
     const candidates: Array<{ path: string; mtime: number }> = [];
     const searchDirs = [
-      path.join(process.cwd(), 'data', 'techliquidators', 'manifests'),
+      path.join(process.cwd(), 'data', 'manifests'),
     ];
 
     for (const dir of searchDirs) {

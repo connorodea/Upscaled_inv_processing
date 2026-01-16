@@ -34,8 +34,27 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 
 Write-Section "Installing dependencies..."
 Push-Location $repoDir
-npm install
-npm run build
+$npmCmd = (Get-Command npm -ErrorAction SilentlyContinue).Source
+if (-not $npmCmd) {
+  $npmCmd = Join-Path $nodeUserPath "npm.cmd"
+}
+if (-not (Test-Path $npmCmd)) {
+  throw "npm not found. Try reopening the terminal and rerun install.bat."
+}
+
+& $npmCmd install
+if ($LASTEXITCODE -ne 0) {
+  throw "npm install failed."
+}
+
+& $npmCmd run build
+if ($LASTEXITCODE -ne 0) {
+  throw "npm run build failed."
+}
+
+if (-not (Test-Path (Join-Path $repoDir "node_modules\\inquirer"))) {
+  throw "Dependencies missing (inquirer not found). Re-run install.bat."
+}
 Pop-Location
 
 Write-Section "Configuring Upscaled shortcuts..."

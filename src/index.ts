@@ -19,7 +19,6 @@ import { Product, Grade } from './types.js';
 import { PhotoManager } from './photoManager.js';
 import { ManifestManager, ManifestRecord } from './manifestManager.js';
 import { MarketplaceIntegration } from './marketplaceIntegration.js';
-import { TechLiquidatorsIntegration } from './techLiquidatorsIntegration.js';
 import { getBatchFilePath, getBatchFileName } from './batchFiles.js';
 import { EbayCompsManifestAnalyzer } from './ebayCompsManifestAnalyzer.js';
 import { loadDotEnv } from './env.js';
@@ -37,7 +36,6 @@ class InventoryProcessor {
   private photoManager: PhotoManager;
   private manifestManager: ManifestManager;
   private marketplaceIntegration: MarketplaceIntegration;
-  private techLiquidatorsIntegration: TechLiquidatorsIntegration;
   private ebayCompsManifestAnalyzer: EbayCompsManifestAnalyzer;
   private hasShownDefaultMenuLabel: boolean;
 
@@ -51,7 +49,6 @@ class InventoryProcessor {
     this.photoManager = new PhotoManager();
     this.manifestManager = new ManifestManager();
     this.marketplaceIntegration = new MarketplaceIntegration();
-    this.techLiquidatorsIntegration = new TechLiquidatorsIntegration();
     this.ebayCompsManifestAnalyzer = new EbayCompsManifestAnalyzer();
     this.hasShownDefaultMenuLabel = false;
   }
@@ -1597,71 +1594,6 @@ class InventoryProcessor {
     console.log('');
   }
 
-  private async syncTechLiquidatorsWatchlist(): Promise<void> {
-    console.log(chalk.bold.cyan('\n━━━━━━━━ TECHLIQUIDATORS WATCHLIST ━━━━━━━━\n'));
-
-    const syncSpinner = ora(chalk.cyan('Syncing watchlist from TechLiquidators...')).start();
-    try {
-      const payload = await this.techLiquidatorsIntegration.syncWatchlist();
-      const count = payload?.items?.length ?? 0;
-      syncSpinner.succeed(chalk.green(`Watchlist synced (${count} items)`));
-    } catch (error) {
-      syncSpinner.fail(chalk.red('Watchlist sync failed'));
-      console.log(chalk.yellow(String(error)));
-      console.log('');
-      return;
-    }
-
-    const analyzeSpinner = ora(chalk.cyan('Analyzing manifests...')).start();
-    const results = await this.techLiquidatorsIntegration.analyzeWatchlist();
-    if (!results.length) {
-      analyzeSpinner.warn(chalk.yellow('No watchlist items available for analysis'));
-      console.log('');
-      return;
-    }
-    analyzeSpinner.succeed(chalk.green(`Analyzed ${results.length} items`));
-
-    const formatMoney = (value?: number) =>
-      typeof value === 'number' ? `$${value.toFixed(2)}` : 'n/a';
-    const formatPercent = (value?: number) =>
-      typeof value === 'number' ? `${(value * 100).toFixed(1)}%` : 'n/a';
-
-    const table = new Table({
-      style: { head: ['cyan'], border: ['grey'] },
-      colWidths: [14, 7, 10, 10, 10, 10, 12, 28]
-    });
-
-    table.push([
-      chalk.cyan('Auction ID'),
-      chalk.cyan('Decision'),
-      chalk.cyan('Cost'),
-      chalk.cyan('Resale'),
-      chalk.cyan('Profit'),
-      chalk.cyan('Margin'),
-      chalk.cyan('AI'),
-      chalk.cyan('Title')
-    ]);
-
-    for (const result of results) {
-      const decisionColor = result.decision === 'PASS' ? chalk.green : chalk.red;
-      const aiDecision = result.aiDecision ? result.aiDecision : 'n/a';
-      table.push([
-        result.auctionId,
-        decisionColor(result.decision),
-        formatMoney(result.costBasis),
-        formatMoney(result.estimatedResaleValue),
-        formatMoney(result.estimatedProfit),
-        formatPercent(result.estimatedMargin),
-        aiDecision,
-        result.title || ''
-      ]);
-    }
-
-    console.log('');
-    console.log(table.toString());
-    console.log('');
-  }
-
   private formatDuration(ms: number): string {
     const totalMinutes = Math.max(Math.round(ms / 60000), 0);
     const days = Math.floor(totalMinutes / 1440);
@@ -1687,190 +1619,6 @@ class InventoryProcessor {
       hour: '2-digit',
       minute: '2-digit'
     });
-  }
-
-  async showTechLiquidatorsAlerts(): Promise<void> {
-    console.log(chalk.bold.cyan('\n━━━━━━━━ TECHLIQUIDATORS ALERTS ━━━━━━━━\n'));
-
-    const notify =
-      this.readBooleanEnv('TECHLIQUIDATORS_ALERT_NOTIFY') ||
-      process.argv.map(arg => arg.toLowerCase()).includes('--notify');
-
-    const syncSpinner = ora(chalk.cyan('Syncing watchlist for alerts...')).start();
-    try {
-      const payload = await this.techLiquidatorsIntegration.syncWatchlist();
-      const count = payload?.items?.length ?? 0;
-      syncSpinner.succeed(chalk.green(`Watchlist synced (${count} items)`));
-    } catch (error) {
-      syncSpinner.warn(chalk.yellow('Watchlist sync failed, using cached data'));
-      console.log(chalk.dim(String(error)));
-    }
-
-    const bidsSpinner = ora(chalk.cyan('Syncing My Bids for alerts...')).start();
-    try {
-      const payload = await this.techLiquidatorsIntegration.syncBids();
-      const count = payload?.items?.length ?? 0;
-      bidsSpinner.succeed(chalk.green(`My Bids synced (${count} items)`));
-    } catch (error) {
-      bidsSpinner.warn(chalk.yellow('My Bids sync failed, using cached data'));
-      console.log(chalk.dim(String(error)));
-    }
-
-    const now = new Date();
-    const { windowHours, graceMinutes } = this.techLiquidatorsIntegration.getAlertConfig();
-    const alerts = await this.techLiquidatorsIntegration.getCombinedAlerts({ now });
-
-    if (!alerts.length) {
-      console.log(chalk.green(`No auctions ending within ${windowHours}h.`));
-      console.log('');
-      return;
-    }
-
-    if (notify) {
-      await this.sendTechLiquidatorsNotifications(alerts);
-    }
-
-    const urgentMs = 30 * 60 * 1000;
-    const warnMs = 2 * 60 * 60 * 1000;
-
-    const table = new Table({
-      style: { head: ['cyan'], border: ['grey'] },
-      colWidths: [12, 10, 16, 20, 12, 36]
-    });
-
-    table.push([
-      chalk.cyan('Auction ID'),
-      chalk.cyan('Source'),
-      chalk.cyan('Ends In'),
-      chalk.cyan('End Time'),
-      chalk.cyan('Bid/Price'),
-      chalk.cyan('Title')
-    ]);
-
-    let endedCount = 0;
-    for (const alert of alerts) {
-      const remaining = alert.millisRemaining;
-      const isEnded = remaining <= 0;
-      if (isEnded) {
-        endedCount += 1;
-      }
-      const durationText = this.formatDuration(Math.abs(remaining));
-      const endsInText = isEnded ? `Ended ${durationText} ago` : durationText;
-      const coloredEndsIn = isEnded
-        ? chalk.red(endsInText)
-        : remaining <= urgentMs
-          ? chalk.red(endsInText)
-          : remaining <= warnMs
-            ? chalk.yellow(endsInText)
-            : chalk.green(endsInText);
-
-      const bidValue =
-        typeof alert.currentBid === 'number' && alert.currentBid > 0
-          ? alert.currentBid
-          : typeof alert.lotPrice === 'number' && alert.lotPrice > 0
-            ? alert.lotPrice
-            : undefined;
-      const bidText = typeof bidValue === 'number' ? `$${bidValue.toFixed(2)}` : 'n/a';
-      const sourceText = alert.sources.includes('watchlist') && alert.sources.includes('bids')
-        ? 'Both'
-        : alert.sources.includes('watchlist')
-          ? 'Watchlist'
-          : 'Bids';
-
-      table.push([
-        alert.auctionId,
-        sourceText,
-        coloredEndsIn,
-        this.formatEndTime(alert.endTime),
-        bidText,
-        alert.title || ''
-      ]);
-    }
-
-    console.log('');
-    console.log(table.toString());
-    console.log('');
-    console.log(
-      chalk.dim(
-        `Showing auctions ending within ${windowHours}h (grace: ${graceMinutes}m). Ended: ${endedCount}.`
-      )
-    );
-    if (!notify) {
-      console.log(chalk.dim('Tip: run with --notify or set TECHLIQUIDATORS_ALERT_NOTIFY=true to send desktop alerts.'));
-    }
-    console.log('');
-  }
-
-  private readBooleanEnv(name: string): boolean {
-    const value = process.env[name];
-    if (!value) {
-      return false;
-    }
-    return ['1', 'true', 'yes', 'on'].includes(value.trim().toLowerCase());
-  }
-
-  private getNotifyWindowMinutes(): number {
-    const raw = process.env.TECHLIQUIDATORS_ALERT_NOTIFY_MINUTES;
-    if (!raw) {
-      return 60;
-    }
-    const value = Number.parseFloat(raw);
-    return Number.isFinite(value) ? value : 60;
-  }
-
-  private getNotifyMaxCount(): number {
-    const raw = process.env.TECHLIQUIDATORS_ALERT_NOTIFY_MAX;
-    if (!raw) {
-      return 5;
-    }
-    const value = Number.parseInt(raw, 10);
-    return Number.isFinite(value) && value > 0 ? value : 5;
-  }
-
-  private escapeAppleScript(value: string): string {
-    return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-  }
-
-  private async sendTechLiquidatorsNotifications(alerts: Array<{
-    auctionId: string;
-    title?: string;
-    url?: string;
-    endTime: Date;
-    millisRemaining: number;
-    sources: Array<'watchlist' | 'bids'>;
-  }>): Promise<void> {
-    if (process.platform !== 'darwin') {
-      console.log(chalk.yellow('Desktop notifications are only supported on macOS.'));
-      return;
-    }
-
-    const notifyWindowMs = this.getNotifyWindowMinutes() * 60 * 1000;
-    const maxCount = this.getNotifyMaxCount();
-    const activeAlerts = alerts
-      .filter(alert => alert.millisRemaining > 0 && alert.millisRemaining <= notifyWindowMs)
-      .slice(0, maxCount);
-
-    if (!activeAlerts.length) {
-      return;
-    }
-
-    for (const alert of activeAlerts) {
-      const title = `TL Auction ${alert.auctionId}`;
-      const endsIn = this.formatDuration(alert.millisRemaining);
-      const sourceText =
-        alert.sources.includes('watchlist') && alert.sources.includes('bids')
-          ? 'watchlist + bids'
-          : alert.sources.includes('watchlist')
-            ? 'watchlist'
-            : 'bids';
-      const body = `${alert.title || 'Auction'} • ends in ${endsIn} • ${sourceText}`;
-      const script = `display notification "${this.escapeAppleScript(body)}" with title "${this.escapeAppleScript(title)}"`;
-
-      await new Promise<void>(resolve => {
-        const child = spawn('osascript', ['-e', script], { stdio: 'ignore' });
-        child.on('close', () => resolve());
-      });
-    }
   }
 
   private async buildInventoryHub(): Promise<void> {
@@ -2167,16 +1915,6 @@ class InventoryProcessor {
             value: 'receive-manifest'
           },
           new inquirer.Separator(),
-          new inquirer.Separator(chalk.dim('— Sourcing —')),
-          {
-            name: chalk.yellow('👁️  Sync TL watchlist + analyze'),
-            value: 'techliquidators-watchlist'
-          },
-          {
-            name: chalk.magenta('⏰  TL watchlist expiry alerts'),
-            value: 'techliquidators-alerts'
-          },
-          new inquirer.Separator(),
           new inquirer.Separator(chalk.dim('— Auctions —')),
           {
             name: chalk.cyan('🔍  Analyze Manifest (eBay Sold Comps)'),
@@ -2297,16 +2035,6 @@ class InventoryProcessor {
       case 'receive-manifest':
         this.hasShownDefaultMenuLabel = true;
         await this.receiveManifest();
-        return true;
-
-      case 'techliquidators-watchlist':
-        this.hasShownDefaultMenuLabel = true;
-        await this.syncTechLiquidatorsWatchlist();
-        return true;
-
-      case 'techliquidators-alerts':
-        this.hasShownDefaultMenuLabel = true;
-        await this.showTechLiquidatorsAlerts();
         return true;
 
       case 'manifest-ebay-comps':
@@ -2940,9 +2668,6 @@ Commands:
   doctor           Run diagnostics (Upscaled Doctor)
   auctions manifest analyze
                    Analyze manifest with eBay sold comps
-  auctions alerts  Show TechLiquidators watchlist expiry alerts
-  auctions alerts --notify
-                   Show alerts and send macOS notifications
   sync sheets      Sync batch tabs + master manifests to Google Sheet
   -h, --help       Show this help menu
 
@@ -2951,9 +2676,6 @@ Menu Actions:
     Add new product (no photos)
     Add new product (with photos)
     Receive manifest / generate PID-UID labels
-  Sourcing:
-    Sync TL watchlist + analyze
-    TL watchlist expiry alerts
   Auctions:
     Analyze Manifest (eBay Sold Comps)
   Finance:
@@ -3000,11 +2722,6 @@ if (args.includes('-h') || args.includes('--help') || args.includes('help')) {
 } else if (args[0] === 'auctions' && args[1] === 'manifest' && args[2] === 'analyze') {
   processor.runEbayCompsManifestAnalyzer().catch(error => {
     console.error(chalk.red.bold('\n❌ Analyzer failed:'), error);
-    process.exit(1);
-  });
-} else if (args[0] === 'auctions' && args[1] === 'alerts') {
-  processor.showTechLiquidatorsAlerts().catch(error => {
-    console.error(chalk.red.bold('\n❌ Alerts failed:'), error);
     process.exit(1);
   });
 } else if (args[0] === 'sync' && args[1] === 'sheets') {
