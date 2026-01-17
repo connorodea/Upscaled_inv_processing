@@ -56,7 +56,6 @@ $copyItems = @(
   "assets",
   "data",
   "MasterManifests",
-  "labels",
   "sku_templates",
   "ui",
   "docs"

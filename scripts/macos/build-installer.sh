@@ -50,7 +50,6 @@ copy_if_exists "${repo_root}/package.json" "${app_bundle}/Contents/Resources/app
 copy_if_exists "${repo_root}/assets" "${app_bundle}/Contents/Resources/app"
 copy_if_exists "${repo_root}/data" "${app_bundle}/Contents/Resources/app"
 copy_if_exists "${repo_root}/MasterManifests" "${app_bundle}/Contents/Resources/app"
-copy_if_exists "${repo_root}/labels" "${app_bundle}/Contents/Resources/app"
 copy_if_exists "${repo_root}/sku_templates" "${app_bundle}/Contents/Resources/app"
 copy_if_exists "${repo_root}/ui" "${app_bundle}/Contents/Resources/app"
 copy_if_exists "${repo_root}/docs" "${app_bundle}/Contents/Resources/app"
