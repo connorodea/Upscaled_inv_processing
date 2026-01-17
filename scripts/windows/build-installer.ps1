@@ -42,10 +42,11 @@ function Copy-Dir {
   $destPath = Join-Path $Destination (Split-Path $Source -Leaf)
   New-Item -ItemType Directory -Force -Path $destPath | Out-Null
 
-  $srcLong = "\\\\?\$Source"
-  $dstLong = "\\\\?\$destPath"
-  $result = & robocopy $srcLong $dstLong /E /NFL /NDL /NJH /NJS /NP
+  $logPath = Join-Path $env:TEMP ("robocopy-" + (Split-Path $Source -Leaf) + ".log")
+  & robocopy $Source $destPath /E /R:1 /W:1 /NP /NFL /NDL /NJH /NJS /LOG:$logPath
   if ($LASTEXITCODE -ge 8) {
+    Write-Host "Robocopy log for $Source:" -ForegroundColor Yellow
+    Get-Content -Path $logPath -ErrorAction SilentlyContinue | Select-Object -Last 50
     throw "Robocopy failed for $Source (code $LASTEXITCODE)"
   }
 }
