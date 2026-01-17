@@ -45,7 +45,7 @@ function Copy-Dir {
   $logPath = Join-Path $env:TEMP ("robocopy-" + (Split-Path $Source -Leaf) + ".log")
   & robocopy $Source $destPath /E /R:1 /W:1 /NP /NFL /NDL /NJH /NJS /LOG:$logPath
   if ($LASTEXITCODE -ge 8) {
-    Write-Host "Robocopy log for $Source:" -ForegroundColor Yellow
+    Write-Host "Robocopy log for ${Source}:" -ForegroundColor Yellow
     Get-Content -Path $logPath -ErrorAction SilentlyContinue | Select-Object -Last 50
     throw "Robocopy failed for $Source (code $LASTEXITCODE)"
   }
