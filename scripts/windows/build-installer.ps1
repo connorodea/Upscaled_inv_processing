@@ -33,7 +33,8 @@ New-Item -ItemType Directory -Force -Path $nodeDir | Out-Null
 function Copy-Dir {
   param (
     [string]$Source,
-    [string]$Destination
+    [string]$Destination,
+    [string[]]$ExcludeDirs = @()
   )
   if (-not (Test-Path $Source)) {
     return
@@ -43,7 +44,13 @@ function Copy-Dir {
   New-Item -ItemType Directory -Force -Path $destPath | Out-Null
 
   $logPath = Join-Path $env:TEMP ("robocopy-" + (Split-Path $Source -Leaf) + ".log")
-  & robocopy $Source $destPath /E /R:1 /W:1 /NP /NFL /NDL /NJH /NJS /LOG:$logPath
+  $excludeArgs = @()
+  foreach ($dir in $ExcludeDirs) {
+    $excludeArgs += "/XD"
+    $excludeArgs += $dir
+  }
+
+  & robocopy $Source $destPath /E /R:1 /W:1 /NP /NFL /NDL /NJH /NJS /LOG:$logPath @excludeArgs
   if ($LASTEXITCODE -ge 8) {
     Write-Host "Robocopy log for ${Source}:" -ForegroundColor Yellow
     Get-Content -Path $logPath -ErrorAction SilentlyContinue | Select-Object -Last 50
@@ -63,7 +70,11 @@ $copyItems = @(
 
 foreach ($item in $copyItems) {
   $src = Join-Path $repoRoot $item
-  Copy-Dir -Source $src -Destination $appRoot
+  if ($item -eq "dist") {
+    Copy-Dir -Source $src -Destination $appRoot -ExcludeDirs @($distRoot)
+  } else {
+    Copy-Dir -Source $src -Destination $appRoot
+  }
 }
 
 $packageJson = Join-Path $repoRoot "package.json"
