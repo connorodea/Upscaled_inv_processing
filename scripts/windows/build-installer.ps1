@@ -30,6 +30,26 @@ Rename-Item -Path (Join-Path $appRoot "node-$nodeVersion-win-x64") -NewName "nod
 Write-Host "Copying app files..." -ForegroundColor Cyan
 New-Item -ItemType Directory -Force -Path $nodeDir | Out-Null
 
+function Copy-Dir {
+  param (
+    [string]$Source,
+    [string]$Destination
+  )
+  if (-not (Test-Path $Source)) {
+    return
+  }
+
+  $destPath = Join-Path $Destination (Split-Path $Source -Leaf)
+  New-Item -ItemType Directory -Force -Path $destPath | Out-Null
+
+  $srcLong = "\\\\?\$Source"
+  $dstLong = "\\\\?\$destPath"
+  $result = & robocopy $srcLong $dstLong /E /NFL /NDL /NJH /NJS /NP
+  if ($LASTEXITCODE -ge 8) {
+    throw "Robocopy failed for $Source (code $LASTEXITCODE)"
+  }
+}
+
 $copyItems = @(
   "dist",
   "assets",
@@ -43,9 +63,7 @@ $copyItems = @(
 
 foreach ($item in $copyItems) {
   $src = Join-Path $repoRoot $item
-  if (Test-Path $src) {
-    Copy-Item -Recurse -Force -Path $src -Destination $appRoot
-  }
+  Copy-Dir -Source $src -Destination $appRoot
 }
 
 $packageJson = Join-Path $repoRoot "package.json"
